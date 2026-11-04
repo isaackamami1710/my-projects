@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Health Insurance Premium Rating Calculator | Isaac Kamami</title>
+<meta name="description" content="A two-category medical quotation model in Excel: age-banded inpatient pricing from single member to M+7, outpatient, dental, optical and maternity, plus a locked edition that hides formulas." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230b2545'/%3E%3Ctext x='50' y='68' font-family='Segoe UI,Arial' font-size='46' font-weight='700' fill='%236fd3d3' text-anchor='middle'%3EIK%3C/text%3E%3C/svg%3E" />
+<style>
+  :root{--navy:#0b2545;--teal:#0f8a8a;--teal-light:#6fd3d3;--ink:#1c2733;--muted:#5b6b7c;--line:#e2e8ef;--bg:#f7f9fb}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.7}
+  a{color:var(--teal);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:820px;margin:0 auto;padding:0 22px}
+  header{background:#0b2545;padding:14px 0}
+  header a{color:#cfe0ef;font-size:14px;font-weight:600}
+  header a:hover{color:#fff;text-decoration:none}
+  .hero{background:linear-gradient(160deg,#0b2545,#123a63);color:#e8f1f8;padding:52px 0 58px}
+  .kicker{font-size:11.5px;letter-spacing:1.6px;text-transform:uppercase;color:var(--teal-light);font-weight:700}
+  h1{font-size:clamp(26px,4vw,36px);color:#fff;margin:10px 0 0;letter-spacing:-.4px;line-height:1.2}
+  .hero p{color:#c3d4e3;margin:14px 0 0;max-width:60ch}
+  main{padding:44px 0 70px}
+  h2{font-size:21px;color:var(--navy);margin:38px 0 10px}
+  h2:first-child{margin-top:0}
+  p{margin:0 0 14px}
+  ul{margin:0 0 14px;padding-left:20px}
+  li{margin-bottom:7px}
+  table{width:100%;border-collapse:collapse;font-size:14px;margin:6px 0 18px;background:#fff}
+  th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line)}
+  th{background:#eef4f8;font-size:12px;letter-spacing:.5px;text-transform:uppercase;color:#3c5468}
+  td.num{text-align:right;font-variant-numeric:tabular-nums}
+  .box{background:#fff;border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:10px;padding:18px 20px;margin:20px 0;font-size:14.5px}
+  .note{background:#fff8e6;border:1px solid #f0dfae;color:#7a5c12;border-radius:10px;padding:14px 18px;font-size:13.5px;margin-top:26px}
+  .back{display:inline-block;margin-top:26px;border:1px solid var(--navy);color:var(--navy);border-radius:9px;padding:10px 18px;font-size:14px;font-weight:700}
+  .back:hover{background:var(--navy);color:#fff;text-decoration:none}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a href="../index.html">← Isaac Kamami</a></div></header>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="kicker">Project · Insurance rating</div>
+    <h1>Health Insurance Premium Rating Calculator</h1>
+    <p>A working quotation model for two benefit categories, built in Excel on rate tables — and a locked
+       edition that lets colleagues use it without exposing the pricing logic.</p>
+  </div>
+</div>
+
+<main>
+<div class="wrap">
+
+  <h2>The problem</h2>
+  <p>
+    Medical quotations are repetitive and easy to get wrong by hand. A family moves from M+3 to M+4, the
+    principal crosses an age band, the inpatient limit changes — and each of those silently changes the
+    premium. Building the logic once, in a model that can be checked, removes arithmetic risk from the
+    quoting conversation and makes the numbers defensible when a broker asks how they were derived.
+  </p>
+
+  <h2>What it does</h2>
+  <ul>
+    <li>Prices <strong>two benefit categories</strong> side by side, each with its own benefit limits.</li>
+    <li>Builds <strong>inpatient</strong> premium by family size — M, M+1, M+2 … through <strong>M+7</strong> — from principal, spouse and child rates.</li>
+    <li>Adds <strong>outpatient</strong> (single member through M+5), <strong>dental</strong>, <strong>optical</strong> and <strong>maternity</strong>.</li>
+    <li>Applies <strong>age bands</strong> automatically: the age entered drives a lookup, so no manual band selection.</li>
+    <li>Adds levies and stamp duty, then rolls everything into a grand total.</li>
+    <li>Validates inputs with drop-down lists so a limit or age outside the product cannot be keyed in.</li>
+  </ul>
+
+  <h2>How the pricing is structured</h2>
+  <p>
+    Family size is priced by composition rather than by a single multiplier: M is the principal alone,
+    M+1 adds the spouse, and each further step adds one child at the child rate. That mirrors how the
+    premium actually accumulates, so a change in family structure is traceable line by line.
+  </p>
+
+  <table>
+    <tr><th>Family size</th><th class="num">Category A unit</th><th class="num">Category B unit</th></tr>
+    <tr><td>M (principal)</td><td class="num">35,640</td><td class="num">34,020</td></tr>
+    <tr><td>M+1</td><td class="num">65,934</td><td class="num">62,937</td></tr>
+    <tr><td>M+2</td><td class="num">84,497</td><td class="num">79,390</td></tr>
+    <tr><td>M+3</td><td class="num">103,060</td><td class="num">95,843</td></tr>
+    <tr><td>M+4</td><td class="num">121,623</td><td class="num">112,296</td></tr>
+    <tr><td>M+5</td><td class="num">140,186</td><td class="num">128,749</td></tr>
+    <tr><td>M+6</td><td class="num">158,749</td><td class="num">145,202</td></tr>
+    <tr><td>M+7</td><td class="num">177,312</td><td class="num">161,655</td></tr>
+  </table>
+  <p style="font-size:13px;color:var(--muted)">Illustrative figures from the model with synthetic rate tables — not a real product rate card.</p>
+
+  <h2>The locked edition</h2>
+  <p>
+    A calculator that exposes its formulas is a calculator somebody will edit. The second edition keeps the
+    same visible output but protects the engine:
+  </p>
+  <ul>
+    <li>Only input cells are unlocked; every formula cell is locked <em>and hidden</em>, so it displays its value but not its logic.</li>
+    <li>Rate and support sheets are hidden at the deepest level the format allows and cannot be unhidden without the password.</li>
+    <li>Workbook structure is protected, so sheets cannot be added, revealed or reordered.</li>
+    <li>Row formatting and row insertion remain allowed, so users can still hide or edit rows in the working area.</li>
+  </ul>
+
+  <div class="box">
+    <strong>Why two editions?</strong> The open edition is for building and auditing the model. The locked
+    edition is for handing it to people who need the answer, not the method — the same discipline used when
+    a rating model is shared outside the team that maintains it.
+  </div>
+
+  <h2>Verification approach</h2>
+  <p>
+    Every rate was checked against the source tables, and the workbook was recalculated end to end and
+    compared with an independent recomputation: totals, all monthly rows and every percentage had to agree
+    cell for cell, with zero error values anywhere in the file. Styling was diffed against the original
+    sheet so the output view did not shift.
+  </p>
+
+  <div class="note">
+    Rate tables and figures shown here are synthetic. No client, member, policy or employer-confidential
+    information is included.
+  </div>
+
+  <a class="back" href="../index.html">← Back to portfolio</a>
+</div>
+</main>
+</body>
+</html>

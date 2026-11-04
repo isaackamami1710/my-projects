@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Isaac Kamami | Actuarial Science, Financial Engineering &amp; Data Science</title>
+<meta name="description" content="Isaac Kamami — Actuarial Science and Financial Engineering graduate working in health insurance underwriting, building data science, machine learning and insurance analytics projects in Python and SQL." />
+<meta name="author" content="Isaac Kamami" />
+<meta property="og:title" content="Isaac Kamami — Actuarial Science · Financial Engineering · Data Science" />
+<meta property="og:description" content="Health insurance underwriter with an MSc in Financial Engineering. Python, SQL and analytics for insurance, risk and financial markets." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230b2545'/%3E%3Ctext x='50' y='68' font-family='Segoe UI,Arial' font-size='46' font-weight='700' fill='%236fd3d3' text-anchor='middle'%3EIK%3C/text%3E%3C/svg%3E" />
+<style>
+  :root{
+    --navy:#0b2545;
+    --navy-soft:#123a63;
+    --teal:#0f8a8a;
+    --teal-light:#6fd3d3;
+    --ink:#1c2733;
+    --muted:#5b6b7c;
+    --line:#e2e8ef;
+    --bg:#f7f9fb;
+    --card:#ffffff;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--teal);text-decoration:none}
+  a:hover{text-decoration:underline}
+  h1,h2,h3,h4{font-weight:700;line-height:1.25;margin:0;color:var(--navy)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+
+  /* ---------- nav ---------- */
+  header.site{
+    position:sticky;top:0;z-index:50;
+    background:rgba(11,37,69,.97);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .brand{display:flex;align-items:center;gap:10px;color:#fff;font-weight:700;letter-spacing:.2px}
+  .brand:hover{text-decoration:none}
+  .brand .mark{
+    width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,var(--teal),var(--teal-light));
+    display:grid;place-items:center;color:var(--navy);font-size:13px;font-weight:800;
+  }
+  .brand span.sub{display:block;font-size:11px;font-weight:400;color:#9fb3c8;letter-spacing:.4px}
+  nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0}
+  nav a{color:#cfe0ef;font-size:14px;font-weight:500}
+  nav a:hover{color:#fff;text-decoration:none}
+  .burger{display:none;background:none;border:0;color:#fff;font-size:22px;cursor:pointer;padding:4px 8px}
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:
+      radial-gradient(900px 380px at 88% -10%, rgba(111,211,211,.20), transparent 60%),
+      linear-gradient(160deg,#0b2545 0%,#123a63 62%,#0e2f52 100%);
+    color:#e8f1f8;
+    padding:74px 0 84px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero:after{
+    content:"";position:absolute;inset:auto 0 0 0;height:60px;
+    background:linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.10));
+    pointer-events:none;
+  }
+  .hero-grid{display:grid;grid-template-columns:1.55fr .95fr;gap:48px;align-items:center}
+  .eyebrow{
+    display:inline-block;font-size:11.5px;letter-spacing:1.6px;text-transform:uppercase;
+    color:var(--teal-light);font-weight:700;margin-bottom:16px;
+    border:1px solid rgba(111,211,211,.35);border-radius:999px;padding:5px 13px;
+  }
+  .hero h1{font-size:clamp(30px,4.4vw,46px);color:#fff;letter-spacing:-.5px}
+  .hero h1 em{font-style:normal;color:var(--teal-light)}
+  .hero p.lead{font-size:17px;color:#c3d4e3;max-width:44ch;margin:18px 0 0}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;border-radius:10px;padding:12px 20px;
+    font-size:14.5px;font-weight:600;border:1px solid transparent;cursor:pointer;
+  }
+  .btn-primary{background:var(--teal-light);color:#08243f}
+  .btn-primary:hover{background:#8ce3e3;text-decoration:none}
+  .btn-ghost{border-color:rgba(255,255,255,.32);color:#e8f1f8}
+  .btn-ghost:hover{background:rgba(255,255,255,.09);text-decoration:none}
+  .portrait{
+    justify-self:center;width:224px;height:224px;border-radius:50%;
+    background:linear-gradient(135deg, rgba(111,211,211,.30), rgba(255,255,255,.06));
+    border:1px solid rgba(255,255,255,.22);
+    display:grid;place-items:center;font-size:62px;font-weight:800;color:#fff;letter-spacing:2px;
+    box-shadow:0 18px 50px rgba(0,0,0,.30);
+  }
+  .portrait small{display:block;font-size:10.5px;letter-spacing:2px;color:#a9c6dc;font-weight:600;margin-top:6px;text-align:center}
+  .hero-stats{display:flex;gap:34px;flex-wrap:wrap;margin-top:38px;padding-top:24px;border-top:1px solid rgba(255,255,255,.14)}
+  .hero-stats div span{display:block;font-size:11px;letter-spacing:1.1px;text-transform:uppercase;color:#9fb3c8}
+  .hero-stats div strong{font-size:15px;color:#fff;font-weight:600}
+
+  /* ---------- sections ---------- */
+  section{padding:72px 0}
+  section.alt{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .sec-head{margin-bottom:34px;max-width:70ch}
+  .sec-head .kicker{font-size:11.5px;letter-spacing:1.6px;text-transform:uppercase;color:var(--teal);font-weight:700}
+  .sec-head h2{font-size:clamp(23px,2.9vw,30px);margin-top:8px;letter-spacing:-.3px}
+  .sec-head p{color:var(--muted);margin:12px 0 0}
+
+  .about-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:44px;align-items:start}
+  .about-grid p{color:#33404f;margin:0 0 16px}
+  .facts{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+  .facts h4{font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .facts dl{margin:0;display:grid;gap:13px}
+  .facts dt{font-size:11.5px;letter-spacing:.7px;text-transform:uppercase;color:var(--muted)}
+  .facts dd{margin:2px 0 0;font-size:14.5px;font-weight:600;color:var(--navy)}
+
+  /* timeline */
+  .timeline{position:relative;margin-top:8px;padding-left:26px}
+  .timeline:before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--teal),#d5e3ee)}
+  .job{position:relative;margin-bottom:34px}
+  .job:last-child{margin-bottom:0}
+  .job:before{
+    content:"";position:absolute;left:-26px;top:5px;width:12px;height:12px;border-radius:50%;
+    background:#fff;border:3px solid var(--teal);
+  }
+  .job .when{font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--teal)}
+  .job h3{font-size:19px;margin:5px 0 2px}
+  .job .org{font-size:14px;color:var(--muted);font-weight:600;margin-bottom:12px}
+  .job ul{margin:0;padding-left:19px;color:#33404f;font-size:14.5px}
+  .job li{margin-bottom:7px}
+
+  /* project cards */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;
+    display:flex;flex-direction:column;transition:transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(11,37,69,.10);border-color:#c8dae8}
+  .card .tag{font-size:10.5px;letter-spacing:1px;text-transform:uppercase;font-weight:700;color:var(--teal);margin-bottom:9px}
+  .card h3{font-size:16px;margin-bottom:8px}
+  .card p{font-size:13.8px;color:var(--muted);margin:0 0 16px;flex:1}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .chip{font-size:11px;background:#eef4f8;color:#3c5468;border:1px solid #dfe9f1;border-radius:999px;padding:3px 9px;font-weight:600}
+  .card .link{font-size:13px;font-weight:700}
+
+  /* skills */
+  .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .skill-box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+  .skill-box h3{font-size:14.5px;margin-bottom:12px;display:flex;align-items:center;gap:9px}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);flex:none}
+  .skill-box ul{margin:0;padding-left:17px;font-size:13.8px;color:#3a4a5a}
+  .skill-box li{margin-bottom:6px}
+
+  /* education */
+  .edu{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .edu-card{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:12px;padding:22px}
+  .edu-card .when{font-size:11.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted)}
+  .edu-card h3{font-size:16.5px;margin:7px 0 3px}
+  .edu-card .school{font-size:14px;color:var(--teal);font-weight:600;margin-bottom:10px}
+  .edu-card p{font-size:13.6px;color:var(--muted);margin:0}
+
+  /* contact */
+  .contact{background:linear-gradient(160deg,#0b2545,#123a63);color:#e8f1f8;border-radius:18px;padding:46px 40px}
+  .contact h2{color:#fff}
+  .contact p{color:#c3d4e3;max-width:56ch;margin:12px 0 26px}
+  .contact-actions{display:flex;flex-wrap:wrap;gap:12px}
+  .contact-list{display:flex;flex-wrap:wrap;gap:26px;margin-top:28px;padding-top:22px;border-top:1px solid rgba(255,255,255,.14);font-size:13.5px}
+  .contact-list span{color:#9fb3c8;display:block;font-size:11px;letter-spacing:1.1px;text-transform:uppercase;margin-bottom:3px}
+  .contact-list a{color:#fff;font-weight:600}
+
+  footer{padding:30px 0 44px;color:var(--muted);font-size:13px;text-align:center}
+  footer .fine{font-size:12px;color:#8595a5;margin-top:8px}
+
+  .note{
+    background:#fff8e6;border:1px solid #f0dfae;color:#7a5c12;border-radius:10px;
+    padding:12px 16px;font-size:13px;margin-top:16px;
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:34px}
+    .portrait{order:-1;width:170px;height:170px;font-size:46px;justify-self:start;margin-top:6px}
+    .about-grid{grid-template-columns:1fr;gap:28px}
+    .cards,.skills-grid{grid-template-columns:1fr 1fr}
+    .edu{grid-template-columns:1fr}
+  }
+  @media (max-width:680px){
+    nav ul{
+      position:absolute;top:62px;left:0;right:0;background:#0b2545;
+      flex-direction:column;gap:0;padding:8px 22px 18px;display:none;
+      border-bottom:1px solid rgba(255,255,255,.12);
+    }
+    nav ul.open{display:flex}
+    nav ul li{padding:11px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+    nav ul li:last-child{border-bottom:0}
+    .burger{display:block}
+    .cards,.skills-grid{grid-template-columns:1fr}
+    section{padding:54px 0}
+    .hero{padding:54px 0 60px}
+    .hero-stats{gap:22px}
+    .contact{padding:32px 22px;border-radius:14px}
+    .facts{padding:20px}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <span class="mark">IK</span>
+      <span>Isaac Kamami<span class="sub">Actuarial · Financial Engineering · Data</span></span>
+    </a>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">☰</button>
+    <nav>
+      <ul id="menu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Nairobi, Kenya · Open to data &amp; analytics roles</span>
+        <h1>Turning insurance and market data into <em>decisions</em>.</h1>
+        <p class="lead">
+          I combine an Actuarial Science foundation and a completed MSc in Financial Engineering
+          with hands-on health insurance underwriting — and I build the Python, SQL and Excel work
+          that sits on top of it.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">View projects</a>
+          <a class="btn btn-ghost" href="mailto:isaackamami99@gmail.com?subject=CV%20request">Request CV</a>
+        </div>
+        <div class="hero-stats">
+          <div><span>Currently</span><strong>Health Underwriting</strong></div>
+          <div><span>Education</span><strong>BSc Actuarial · MSc FE</strong></div>
+          <div><span>Core tools</span><strong>Python · SQL · Excel</strong></div>
+        </div>
+      </div>
+      <div class="portrait">
+        <div>IK<small>ISAAC KAMAMI</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section id="about">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker">About</div>
+        <h2>Quantitative training, applied to a real insurance book</h2>
+      </div>
+      <div class="about-grid">
+        <div>
+          <p>
+            I am a health insurance underwriter with a quantitative background. My work involves
+            assessing medical risk, applying underwriting terms, pricing renewals against claims
+            experience, and keeping member records accurate across policy administration systems.
+          </p>
+          <p>
+            Alongside that, I study and build with data: statistical modelling, time-series
+            forecasting, machine learning and financial engineering. My MSc work covered demand
+            forecasting, portfolio analysis, volatility and regime modelling, and quantile-regression
+            approaches to financial risk.
+          </p>
+          <p>
+            The direction I am moving in is the intersection of the two — insurance analytics and
+            risk modelling supported by data science. Industry knowledge plus technical execution is
+            a more useful combination than either one on its own, and it is where I do my best work.
+          </p>
+          <p>
+            I work mainly in <strong>Python</strong> and <strong>SQL</strong>, with <strong>Excel</strong>
+            as the everyday tool for pricing models and reporting, and I am building out
+            <strong>Power BI</strong> and <strong>machine learning</strong> depth.
+          </p>
+        </div>
+        <aside class="facts">
+          <h4>At a glance</h4>
+          <dl>
+            <dt>Based in</dt><dd>Kenya</dd>
+            <dt>Focus</dt><dd>Insurance analytics · risk · data science</dd>
+            <dt>Education</dt><dd>BSc Actuarial Science (2:1)<br>MSc Financial Engineering</dd>
+            <dt>Languages</dt><dd>Python, SQL, R, Excel / VBA</dd>
+            <dt>Interests</dt><dd>ML, time series, credit &amp; risk modelling, BI</dd>
+            <dt>Status</dt><dd>Open to new opportunities</dd>
+          </dl>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= EXPERIENCE ================= -->
+  <section id="experience" class="alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker">Experience</div>
+        <h2>Health insurance underwriting &amp; policy administration</h2>
+        <p>Retail and group medical business — risk assessment through to renewal pricing and client communication.</p>
+      </div>
+
+      <div class="timeline">
+        <article class="job">
+          <div class="when">June 2025 — Present</div>
+          <h3>Health Underwriting &amp; Policy Administration</h3>
+          <div class="org">Liberty Life Assurance Kenya · The Heritage Insurance Company Kenya</div>
+          <ul>
+            <li>Underwrite individual and corporate medical applications: assess declared conditions, medical reports and prior cover, then apply loadings, exclusions and waiting-period terms.</li>
+            <li>Price renewals from claims utilisation and burning-cost experience, test premium adequacy and flag accounts where experience has deteriorated.</li>
+            <li>Administer the policy lifecycle — new business onboarding, membership creation and updates, acceptance letters, debit/credit adjustments, amendments and renewals.</li>
+            <li>Support quotations for the retail medical product line and prepare underwriting and production reports for management.</li>
+            <li>Handle broker and client queries on benefits, exclusions and underwriting decisions, and coordinate with claims, medical, finance and IT teams to resolve them.</li>
+            <li>Work across insurance administration, membership and screening platforms; contribute to auto-rating configuration, user acceptance testing and system migration work.</li>
+          </ul>
+        </article>
+
+        <article class="job">
+          <div class="when">November 2024 — May 2025</div>
+          <h3>Health Business Underwriting</h3>
+          <div class="org">Health insurance operations (engaged through Stratostaff E.A.)</div>
+          <ul>
+            <li>Joined the health business as an underwriting and administration analyst, building the product and process knowledge that underpins the current role.</li>
+            <li>Handled application review, document follow-up and member onboarding for retail medical business.</li>
+          </ul>
+        </article>
+
+        <article class="job">
+          <div class="when">2019 — 2023</div>
+          <h3>BSc Actuarial Science</h3>
+          <div class="org">Egerton University, Njoro — Second Class Upper Division</div>
+          <ul>
+            <li>Probability, life contingencies, risk theory, financial mathematics and statistical modelling.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROJECTS ================= -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker">Projects</div>
+        <h2>Selected work</h2>
+        <p>Applied analytics across insurance pricing, financial markets and general machine learning. Each card links to its repository as it is published.</p>
+      </div>
+
+      <div class="cards">
+
+        <article class="card">
+          <div class="tag">Insurance · Excel</div>
+          <h3>Health Insurance Premium Rating Calculator</h3>
+          <p>
+            A two-category medical quotation model built on synthetic rate tables: age-banded inpatient
+            pricing from single member to M+7, outpatient, dental, optical and maternity, with a
+            password-protected locked edition that hides formulas but leaves inputs editable.
+          </p>
+          <div class="chips"><span class="chip">Excel</span><span class="chip">Rating logic</span><span class="chip">Protection</span></div>
+          <a class="link" href="projects/premium-calculator.html">Read more →</a>
+        </article>
+
+        <article class="card">
+          <div class="tag">Insurance · Dashboard</div>
+          <h3>New Business &amp; Renewal Performance Dashboard</h3>
+          <p>
+            Formula-driven Excel dashboard over a synthetic ten-month medical book: premium, lives and
+            policy counts by month, segment, channel, payment mode, agency and client — all live-linked
+            so the whole view recalculates from the source table.
+          </p>
+          <div class="chips"><span class="chip">Excel</span><span class="chip">Charts</span><span class="chip">Synthetic data</span></div>
+          <a class="link" href="projects/business-dashboard.html">Read more →</a>
+        </article>
+
+        <article class="card">
+          <div class="tag">Financial Engineering</div>
+          <h3>Treasury Yield Spread Prediction</h3>
+          <p>
+            Modelling the spread between Treasury maturities to test whether macro and rate features
+            carry predictive signal, comparing regression baselines against gradient-boosted models.
+          </p>
+          <div class="chips"><span class="chip">Python</span><span class="chip">Scikit-learn</span><span class="chip">Rates</span></div>
+          <a class="link" href="https://github.com/isaackamami1710" target="_blank" rel="noopener">Repository →</a>
+        </article>
+
+        <article class="card">
+          <div class="tag">Time Series</div>
+          <h3>ATM Cash Demand Forecasting</h3>
+          <p>
+            MSFE project forecasting daily cash demand — around KES 2 million of currency — to inform
+            replenishment scheduling, with seasonality, calendar effects and backtested error comparisons.
+          </p>
+          <div class="chips"><span class="chip">Forecasting</span><span class="chip">Python</span><span class="chip">Backtesting</span></div>
+          <a class="link" href="https://github.com/isaackamami1710" target="_blank" rel="noopener">Repository →</a>
+        </article>
+
+        <article class="card">
+          <div class="tag">Regime Modelling</div>
+          <h3>Hidden Markov Models for Crude Oil Prices</h3>
+          <p>
+            Fitting HMMs to crude oil returns to separate calm and stressed regimes, then testing whether
+            regime state improves volatility forecasts and risk estimates.
+          </p>
+          <div class="chips"><span class="chip">HMM</span><span class="chip">Volatility</span><span class="chip">Commodities</span></div>
+          <a class="link" href="https://github.com/isaackamami1710" target="_blank" rel="noopener">Repository →</a>
+        </article>
+
+        <article class="card">
+          <div class="tag">Portfolio</div>
+          <h3>Portfolio Analysis, July 2023 – June 2025</h3>
+          <p>
+            Two years of portfolio construction and comparison: risk-return profiles, optimisation under
+            constraints, drawdown analysis and the effect of rebalancing rules on realised performance.
+          </p>
+          <div class="chips"><span class="chip">Optimisation</span><span class="chip">Risk-return</span><span class="chip">Python</span></div>
+          <a class="link" href="https://github.com/isaackamami1710" target="_blank" rel="noopener">Repository →</a>
+        </article>
+
+        <article class="card">
+          <div class="tag">Risk · Capstone</div>
+          <h3>Quantile Regression for Financial Risk</h3>
+          <p>
+            MSFE capstone exploring quantile regression as an alternative to variance-based risk measures,
+            estimating tail behaviour directly instead of assuming a distribution for returns.
+          </p>
+          <div class="chips"><span class="chip">Quantile regression</span><span class="chip">VaR</span><span class="chip">Risk</span></div>
+          <a class="link" href="https://github.com/isaackamami1710" target="_blank" rel="noopener">Repository →</a>
+        </article>
+
+        <article class="card">
+          <div class="tag">Deep Learning</div>
+          <h3>Deep Learning Applications in Finance</h3>
+          <p>
+            Sequence models applied to financial series — comparison of recurrent and feed-forward
+            architectures against statistical benchmarks, with attention to overfitting on short histories.
+          </p>
+          <div class="chips"><span class="chip">TensorFlow</span><span class="chip">Neural nets</span><span class="chip">Evaluation</span></div>
+          <a class="link" href="https://github.com/isaackamami1710" target="_blank" rel="noopener">Repository →</a>
+        </article>
+
+        <article class="card">
+          <div class="tag">Healthcare · ML</div>
+          <h3>Alzheimer's Disease Data Analysis</h3>
+          <p>
+            Exploratory and predictive analysis of clinical patient data — feature relationships, class
+            imbalance handling and classification of diagnosis outcomes with interpretable models.
+          </p>
+          <div class="chips"><span class="chip">Healthcare</span><span class="chip">Classification</span><span class="chip">Pandas</span></div>
+          <a class="link" href="https://github.com/isaackamami1710" target="_blank" rel="noopener">Repository →</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SKILLS ================= -->
+  <section id="skills" class="alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker">Skills</div>
+        <h2>What I work with</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-box">
+          <h3><span class="dot"></span>Programming &amp; data</h3>
+          <ul>
+            <li>Python — Pandas, NumPy, Matplotlib, Plotly</li>
+            <li>SQL — joins, aggregation, analytical datasets</li>
+            <li>R for statistical work</li>
+            <li>Jupyter / Google Colab</li>
+            <li>Git &amp; GitHub</li>
+          </ul>
+        </div>
+        <div class="skill-box">
+          <h3><span class="dot"></span>Modelling &amp; analytics</h3>
+          <ul>
+            <li>Statistical modelling and hypothesis testing</li>
+            <li>Time-series forecasting</li>
+            <li>Machine learning — scikit-learn, TensorFlow</li>
+            <li>Risk modelling and quantile approaches</li>
+            <li>Portfolio optimisation</li>
+          </ul>
+        </div>
+        <div class="skill-box">
+          <h3><span class="dot"></span>Business &amp; reporting</h3>
+          <ul>
+            <li>Excel — advanced formulas, VLOOKUP, PivotTables, macros</li>
+            <li>Multi-sheet reporting models and dashboards</li>
+            <li>Power BI (developing)</li>
+            <li>PowerPoint and management reporting</li>
+          </ul>
+        </div>
+        <div class="skill-box">
+          <h3><span class="dot"></span>Insurance domain</h3>
+          <ul>
+            <li>Individual and corporate medical underwriting</li>
+            <li>Inpatient, outpatient, dental, optical, maternity benefits</li>
+            <li>Waiting periods, sub-limits and exclusions</li>
+            <li>Claims utilisation and burning-cost analysis</li>
+            <li>Renewal pricing and premium adequacy</li>
+          </ul>
+        </div>
+        <div class="skill-box">
+          <h3><span class="dot"></span>Financial engineering</h3>
+          <ul>
+            <li>Quantitative finance fundamentals</li>
+            <li>Financial modelling and valuation</li>
+            <li>Risk measurement and tail behaviour</li>
+            <li>Market data analysis</li>
+          </ul>
+        </div>
+        <div class="skill-box">
+          <h3><span class="dot"></span>Ways of working</h3>
+          <ul>
+            <li>Accuracy and confidentiality on sensitive data</li>
+            <li>Clear written communication with brokers and clients</li>
+            <li>Process improvement and UAT support</li>
+            <li>Comfortable moving between business and technical teams</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= EDUCATION ================= -->
+  <section id="education">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker">Education</div>
+        <h2>Academic background</h2>
+      </div>
+      <div class="edu">
+        <article class="edu-card">
+          <div class="when">Completed 2026</div>
+          <h3>MSc Financial Engineering</h3>
+          <div class="school">WorldQuant University</div>
+          <p>
+            Quantitative finance, financial modelling, Python, statistical and machine learning,
+            deep learning, portfolio optimisation, time-series analysis and risk modelling.
+            Project work included demand forecasting, portfolio analysis, regime modelling and a
+            quantile-regression capstone.
+          </p>
+        </article>
+        <article class="edu-card">
+          <div class="when">August 2019 — October 2023</div>
+          <h3>BSc Actuarial Science</h3>
+          <div class="school">Egerton University, Njoro, Kenya</div>
+          <p>
+            Second Class Upper Division. Probability, life contingencies, risk theory, financial
+            mathematics and statistical modelling — the foundation for the pricing and risk work I do now.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <h2>Let's talk</h2>
+        <p>
+          I am open to data science, analytics, risk and insurance analytics roles — locally and remote —
+          and to collaborating on projects that mix quantitative modelling with real business data.
+        </p>
+        <div class="contact-actions">
+          <a class="btn btn-primary" href="mailto:isaackamami99@gmail.com">Email me</a>
+          <a class="btn btn-ghost" href="https://github.com/isaackamami1710" target="_blank" rel="noopener">GitHub profile</a>
+          <a class="btn btn-ghost" href="mailto:isaackamami99@gmail.com?subject=CV%20request">Request CV</a>
+        </div>
+        <div class="contact-list">
+          <div><span>Email</span><a href="mailto:isaackamami99@gmail.com">isaackamami99@gmail.com</a></div>
+          <div><span>GitHub</span><a href="https://github.com/isaackamami1710" target="_blank" rel="noopener">github.com/isaackamami1710</a></div>
+          <div><span>LinkedIn</span><a href="#" title="placeholder">Add your LinkedIn URL</a></div>
+          <div><span>Location</span><a href="#">Kenya · open to remote</a></div>
+        </div>
+      </div>
+      <p class="note">
+        A note on this site: project descriptions are written for a public portfolio. Rate tables and
+        transaction data in the insurance projects are synthetic; no client, policy or employer-confidential
+        information is published here.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>© <span id="yr">2026</span> Isaac Kamami · Built as a static site and hosted on GitHub Pages</div>
+    <div class="fine">Actuarial Science · Financial Engineering · Data Science</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  var burger = document.getElementById('burger'), menu = document.getElementById('menu');
+  burger.addEventListener('click', function () {
+    var open = menu.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  menu.addEventListener('click', function (e) {
+    if (e.target.tagName === 'A') { menu.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+  });
+</script>
+</body>
+</html>
